@@ -1,0 +1,81 @@
+# Data paths
+#data_path: '/home/ruslan/data/datasets/d455/'
+data_path: '/home/urock/d455_undist/'
+train_sequences: [
+  'belyaevo-1', 'belyaevo-2-train', 'flat-train', 'Belyaevo-night-train', 'Belyaevo-night-small-train'
+]
+dev_sequences: ['belyaevo-2-dev', 'flat-dev']
+test_sequences: ['belyaevo-2-dev', 'flat-dev']
+plot_views: ['xz', 'xy']
+
+# Camera parameters
+frames_per_second: 15
+camera_matrix_l: [
+    [380.2983, 0,       318.2087],
+    [0,       379.3714, 245.7744],
+    [0,       0,         1],
+]
+camera_matrix_r: [
+    [378.7667, 0,       318.8423],
+    [0,       377.8085, 242.6519],
+    [0,       0,         1],
+]
+original_image_h: 480
+original_image_w: 640
+distance_btw_cameras: 1.0
+
+# Virtual camera parameters
+use_virtual_camera: True
+# virtual_camera_matrix: [
+#     [390, 0,       319.5],
+#     [0,       390, 239.5],
+#     [0,       0,         1],
+# ]
+virtual_camera_matrix: [
+    [500, 0,       319.5],
+    [0,       500, 239.5],
+    [0,       0,         1],
+]
+
+# Model parameters
+backbone_flow: 'resnet50'
+backbone_pose: 'mobilenetv2'
+backbone_depth: 'resnet50'
+image_h: 448
+image_w: 640
+posenet_activation: 'relu'
+min_depth: 1
+max_depth: 100
+scale_rot: 0.01
+scale_tr: 0.1
+grayscale_load: False
+init_binocular_noise: 1
+
+# Training parameters
+num_epochs: 6
+batch_size: 5
+rollout_size: 2
+learning_rate: 0.0001
+lr_switch_after: 3
+reverse_runs: True
+max_frames_skip: 1
+random_seed: 42
+use_stereo: False
+flip_augmentation: True
+
+# Loss parameters
+lambda_smoothness_flow: 0.01
+lambda_smoothness_depth: 0.01
+lambda_flow_consistency: 0.001
+moving_object_percentile: 70
+blur_before_loss: True
+remove_blur_after: 1
+
+# Predict parameters
+skip_frames_predict: 1
+min_depth_on_plot: 4
+
+# Debug parameters
+debug_mode: False
+load_weights: False
+load_weights_from: 'wandb/run-20201022_061437-1umc45jn/'

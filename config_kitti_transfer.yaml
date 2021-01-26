@@ -1,0 +1,82 @@
+# Data paths
+data_path: '/home/ruslan/data/datasets/KITTI_dataset/odometry/dataset/'
+train_sequences: [
+  '00', '01', '02', '03', '04', '05', '06',
+  '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21'
+]
+dev_sequences: ['07', '08']
+test_sequences: ['09', '10']
+plot_views: ['xz']
+
+# Camera parameters
+frames_per_second: 10
+camera_matrix_l: [
+    [718.856, 0,       607.1928],
+    [0,       718.856, 185.2157],
+    [0,       0,         1],
+]
+camera_matrix_r: [
+    [718.856, 0,       607.1928],
+    [0,       718.856, 185.2157],
+    [0,       0,         1],
+]
+original_image_h: 376
+original_image_w: 1241
+distance_btw_cameras: 0.532331858
+
+# Virtual camera parameters
+use_virtual_camera: True
+# virtual_camera_matrix: [
+#     [756.234375, 0,      620],
+#     [0,          305.5,  187.5],
+#     [0,          0,      1],
+# ] # for 390
+virtual_camera_matrix: [
+    [969.53125,  0,          620],
+    [0,          391.66667,  187.5],
+    [0,          0,          1],
+] # for 500
+
+# Model parameters
+backbone_flow: 'resnet50'
+backbone_pose: 'mobilenetv2'
+backbone_depth: 'resnet50'
+image_h: 224
+image_w: 320
+posenet_activation: 'relu'
+min_depth: 1
+max_depth: 100
+scale_rot: 0.01
+scale_tr: 0.1
+grayscale_load: False
+init_binocular_noise: 1
+
+# Training parameters
+num_epochs: 6
+batch_size: 20
+rollout_size: 2
+learning_rate: 0.0001
+lr_switch_after: 3
+reverse_runs: True
+max_frames_skip: 1
+random_seed: 42
+use_stereo: True
+flip_augmentation: True
+
+# Loss parameters
+lambda_smoothness_flow: 0.01
+lambda_smoothness_depth: 0.001
+lambda_flow_consistency: 0.001
+lambda_skip_pose: 0.0
+moving_object_percentile: 70
+blur_before_loss: True
+remove_blur_after: 1
+
+# Predict parameters
+skip_frames_predict: 0
+min_depth_on_plot: 4
+
+# Debug parameters
+debug_mode: False
+load_weights: False
+load_weights_from: 'wandb/run-20200904_131922-2xcqu1ts/'

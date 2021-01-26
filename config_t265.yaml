@@ -1,0 +1,62 @@
+# Data parameters
+data_path: '/home/ruslan/data/datasets/t265_straight/'
+train_sequences: ['yamskoe_train', 'gz_0_0_0', 'gz_0_0_90', 'gz_0_90_0', 'gz_90_0_0', 'gz_90_0_90']
+dev_sequences: ['yamskoe_test', 'gz_0_0_0_test']
+test_sequences: ['yamskoe_test', 'gz_0_0_0_test', 'gz_0_0_90_test', 'gz_0_90_0_test', 'gz_90_0_0_test', 'gz_90_0_90_test']
+plot_views: ['xy', 'xz']
+
+# Camera parameters
+frames_per_second: 30
+camera_matrix_l: [
+    [285.66650390625, 0.0,               421.8902893066406],
+    [0.0,             286.7117919921875, 409.32861328125],
+    [0.0,             0.0,               1.0],
+]
+camera_matrix_r: [
+    [285.41558837890625, 0.0,             428.9866943359375],
+    [0.0,                286.59228515625, 410.2189025878906],
+    [0.0,                0.0,             1.0],
+]
+original_image_h: 800
+original_image_w: 848
+distance_btw_cameras: 0.064
+
+# Model parameters
+backbone_flow: 'resnet50'
+backbone_pose: 'mobilenetv2'
+backbone_depth: 'resnet50'
+image_h: 224
+image_w: 224
+posenet_activation: 'relu'
+min_depth: 0.25
+max_depth: 10
+scale_rot: 0.01
+scale_tr: 0.01
+grayscale_load: False
+init_binocular_noise: 1
+
+# Training parameters
+num_epochs: 6
+batch_size: 14
+learning_rate: 0.0001
+lr_switch_after: 3
+reverse_runs: True
+max_frames_skip: 3
+random_seed: 42
+
+# Loss parameters
+lambda_smoothness_flow: 0.01
+lambda_smoothness_depth: 0.01
+lambda_flow_consistency: 0.1
+moving_object_percentile: 70
+blur_before_loss: True
+remove_blur_after: 1
+
+# Predict parameters
+skip_frames_predict: 2
+min_depth_on_plot: 0.5
+
+# Debug parameters
+debug_mode: False
+load_weights: False
+load_weights_from: 'wandb/run-20200901_103724-i04uhfu9/' # KITTI grayscale
